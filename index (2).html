@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>المحامي الحسن النوري | شركة أيسن للمحاماة والاستشارات القانونية</title>
+<meta name="description" content="المحامي الحسن النوري - محامٍ ومستشار قانوني في بغداد. خدمات قانونية متكاملة في الأحوال الشخصية، الدعاوى الجزائية والمدنية، تسجيل الشركات والعلامات التجارية." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#e8e0d5;
+    --paper-2:#efe8de;
+    --ink:#2b241c;
+    --ink-soft:#4b3f31;
+    --green:#4a7c3f;
+    --green-deep:#2f5328;
+    --gold:#b8960c;
+    --gold-soft:#d9b73a;
+    --line:rgba(43,36,28,.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Cairo','Amiri',serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.7;
+    background-image:
+      radial-gradient(rgba(75,63,49,.06) 1px,transparent 1px),
+      repeating-linear-gradient(180deg,rgba(75,63,49,.04) 0 2px,transparent 2px 7px),
+      repeating-linear-gradient(90deg,rgba(75,63,49,.03) 0 1px,transparent 1px 9px);
+    background-size:14px 14px,auto,auto;
+  }
+  h1,h2,h3{font-family:'Amiri','Playfair Display',serif;color:var(--green-deep);font-weight:700;line-height:1.3}
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1180px;margin:0 auto;padding:0 24px}
+  .eyebrow{font-family:'Playfair Display',serif;letter-spacing:.25em;text-transform:uppercase;font-size:.75rem;color:var(--gold);margin-bottom:14px;display:inline-block}
+  .divider{display:flex;align-items:center;justify-content:center;gap:14px;margin:18px 0 28px;color:var(--gold)}
+  .divider::before,.divider::after{content:"";height:1px;width:64px;background:var(--gold)}
+
+  /* Navbar */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(232,224,213,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1180px;margin:0 auto}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand-mark{width:38px;height:38px;border-radius:50%;background:var(--green-deep);display:grid;place-items:center;color:var(--gold-soft);font-family:'Amiri',serif;font-weight:700}
+  .brand-name{font-family:'Amiri',serif;font-weight:700;color:var(--green-deep);font-size:1.05rem}
+  .brand-sub{font-size:.72rem;color:var(--ink-soft)}
+  .nav-links{display:flex;gap:28px}
+  .nav-links a{font-weight:600;font-size:.95rem;color:var(--ink-soft);transition:color .2s}
+  .nav-links a:hover{color:var(--green-deep)}
+  .nav-toggle{display:none;background:none;border:0;font-size:1.5rem;color:var(--green-deep);cursor:pointer}
+  @media(max-width:760px){
+    .nav-links{display:none;position:absolute;top:100%;right:0;left:0;background:var(--paper-2);flex-direction:column;padding:18px 24px;border-bottom:1px solid var(--line)}
+    .nav-links.open{display:flex}
+    .nav-toggle{display:block}
+  }
+
+  /* Hero */
+  .hero{padding:90px 0 80px;text-align:center;position:relative;overflow:hidden}
+  .hero h1{font-size:clamp(2rem,5vw,3.4rem);margin-bottom:14px}
+  .hero .title-en{font-family:'Playfair Display',serif;color:var(--ink-soft);font-size:1.05rem;letter-spacing:.05em;margin-bottom:28px}
+  .hero p.lede{max-width:680px;margin:0 auto 36px;color:var(--ink-soft);font-size:1.05rem}
+  .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:2px;font-weight:600;font-size:.95rem;transition:transform .2s,box-shadow .2s;border:1px solid transparent;cursor:pointer;font-family:inherit}
+  .btn-primary{background:var(--green-deep);color:var(--paper);box-shadow:0 6px 18px -8px rgba(47,83,40,.6)}
+  .btn-primary:hover{transform:translateY(-2px);background:var(--green)}
+  .btn-ghost{background:transparent;color:var(--green-deep);border-color:var(--green-deep)}
+  .btn-ghost:hover{background:var(--green-deep);color:var(--paper)}
+  .leaf{position:absolute;opacity:.18;color:var(--green)}
+  .leaf.l{top:60px;right:6%;width:120px}
+  .leaf.r{bottom:30px;left:6%;width:140px;transform:scaleX(-1)}
+
+  /* Sections */
+  section{padding:90px 0;border-top:1px solid var(--line)}
+  .section-head{text-align:center;margin-bottom:56px}
+  .section-head h2{font-size:clamp(1.7rem,3.4vw,2.4rem)}
+  .section-head .sub{color:var(--ink-soft);max-width:640px;margin:10px auto 0}
+
+  /* About */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  @media(max-width:820px){.about-grid{grid-template-columns:1fr}}
+  .about-card{background:var(--paper-2);border:1px solid var(--line);padding:30px;border-radius:4px}
+  .about-card h3{margin-bottom:18px;font-size:1.3rem}
+  .about-card ul{list-style:none}
+  .about-card li{padding:10px 0;border-bottom:1px dashed var(--line);color:var(--ink-soft)}
+  .about-card li:last-child{border-bottom:0}
+  .about-card li strong{color:var(--ink);display:block;font-weight:700;margin-bottom:2px}
+  /* Timeline */
+  .timeline{list-style:none;position:relative;padding-right:24px}
+  .timeline::before{content:"";position:absolute;right:6px;top:6px;bottom:6px;width:2px;background:linear-gradient(to bottom,var(--gold),var(--green-deep))}
+  .timeline li{position:relative;padding:0 22px 24px 0;color:var(--ink-soft)}
+  .timeline li:last-child{padding-bottom:0}
+  .timeline li::before{content:"";position:absolute;right:-2px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--gold);border:2px solid var(--paper-2)}
+  .timeline li strong{color:var(--ink);display:block;font-weight:700;margin-bottom:3px}
+  .timeline li .yr{font-size:.8rem;color:var(--gold);font-family:'Playfair Display',serif;letter-spacing:.05em}
+  .edu-badge{display:inline-flex;align-items:center;gap:10px;background:var(--paper);border:1px solid var(--gold);padding:12px 18px;border-radius:3px;margin-bottom:12px;width:100%}
+  .edu-badge .deg{font-weight:700;color:var(--green-deep)}
+  .edu-badge .field{color:var(--ink-soft);font-size:.9rem}
+
+  /* Services */
+  .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px}
+  .svc{background:var(--paper-2);border:1px solid var(--line);padding:28px 24px;border-radius:4px;transition:transform .25s,box-shadow .25s}
+  .svc:hover{transform:translateY(-4px);box-shadow:0 12px 30px -16px rgba(43,36,28,.25);border-color:var(--gold)}
+  .svc-icon{width:46px;height:46px;border-radius:50%;background:var(--green-deep);color:var(--gold-soft);display:grid;place-items:center;margin-bottom:16px;font-size:1.2rem}
+  .svc h3{font-size:1.1rem;margin-bottom:8px}
+  .svc p{color:var(--ink-soft);font-size:.95rem}
+
+  /* Contact */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+  @media(max-width:820px){.contact-grid{grid-template-columns:1fr}}
+  .info-list{background:var(--paper-2);border:1px solid var(--line);padding:30px;border-radius:4px}
+  .info-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px dashed var(--line)}
+  .info-item:last-child{border-bottom:0}
+  .info-item .ic{width:38px;height:38px;flex-shrink:0;background:var(--green-deep);color:var(--gold-soft);border-radius:50%;display:grid;place-items:center}
+  .info-item strong{display:block;color:var(--ink);margin-bottom:3px}
+  .info-item span{color:var(--ink-soft);font-size:.95rem}
+  .map-wrap{border:1px solid var(--line);border-radius:4px;overflow:hidden;min-height:340px}
+  .map-wrap iframe{width:100%;height:100%;min-height:340px;border:0;display:block}
+
+  /* Footer */
+  footer{background:var(--green-deep);color:var(--paper);padding:42px 0;text-align:center}
+  footer .brand-name{color:var(--gold-soft)}
+  footer p{color:rgba(232,224,213,.75);font-size:.9rem;margin-top:10px}
+
+  /* Reveal */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <div class="brand-mark">ح</div>
+      <div>
+        <div class="brand-name">المحامي الحسن النوري</div>
+        <div class="brand-sub">شركة أيسن للمحاماة والاستشارات القانونية</div>
+      </div>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">نبذة</a>
+      <a href="#services">خدمات</a>
+      <a href="#contact">تواصل</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <svg class="leaf l" viewBox="0 0 100 100" fill="currentColor"><path d="M50 10 C70 30 80 60 50 90 C20 60 30 30 50 10 Z"/></svg>
+  <svg class="leaf r" viewBox="0 0 100 100" fill="currentColor"><path d="M50 10 C70 30 80 60 50 90 C20 60 30 30 50 10 Z"/></svg>
+  <div class="container reveal">
+    <span class="eyebrow">Hassan Al-Nouri Law</span>
+    <h1>المحامي الحسن النوري</h1>
+    <div class="title-en">Attorney &amp; Legal Counsel — Baghdad, Iraq</div>
+    <div class="divider">⚖</div>
+    <p class="lede">خدمات قانونية متكاملة بخبرة ودقة في الأحوال الشخصية، الدعاوى الجزائية والمدنية، وتسجيل الشركات والعلامات التجارية.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#contact">احجز استشارة</a>
+      <a class="btn btn-ghost" href="#services">تعرّف على الخدمات</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">About</span>
+      <h2>نبذة عن المحامي</h2>
+      <div class="divider">⚖</div>
+      <p class="sub">محامٍ ومستشار قانوني يقدّم خدماته للأفراد والشركات بمنهجية مهنية وسرية تامة.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-card reveal">
+        <h3>التحصيل الدراسي والعضويات</h3>
+        <div class="edu-badge">
+          <span style="font-size:1.4rem">🎓</span>
+          <div><div class="deg">بكالوريوس قانون</div><div class="field">Bachelor of Law</div></div>
+        </div>
+        <div class="edu-badge">
+          <span style="font-size:1.4rem">🏛</span>
+          <div><div class="deg">ماجستير قانون جنائي</div><div class="field">Master of Criminal Law</div></div>
+        </div>
+        <ul style="margin-top:18px">
+          <li><strong>عضو اتحاد الحقوقيين العراقيين</strong>Iraqi Jurists Union Member</li>
+          <li><strong>عضو اللجنة الرياضية المركزية</strong>نقابة المحامين العراقيين <span style="color:var(--gold);font-size:.85rem">٢٠٢٢–٢٠٢٣</span></li>
+          <li><strong>عضو لجنة استئناف الانتخابات</strong>الاتحاد العراقي لكرة القدم</li>
+        </ul>
+      </div>
+      <div class="about-card reveal">
+        <h3>المسيرة المهنية</h3>
+        <ul class="timeline">
+          <li>
+            <strong>المدير المفوض</strong>
+            شركة أيسن للمحاماة والاستشارات القانونية م.م
+            <span class="yr">Managing Director — Aisen Law Firm</span>
+          </li>
+          <li>
+            <strong>الممثل القانوني — غرفة تجارة بغداد</strong>
+            <span class="yr">٢٠٢١ – ٢٠٢٢ · Baghdad Chamber of Commerce</span>
+          </li>
+          <li>
+            <strong>الممثل القانوني — نادي الإسكان الرياضي</strong>
+            <span class="yr">٢٠٢٠ – ٢٠٢٢ · Al-Iskan Sports Club</span>
+          </li>
+          <li>
+            <strong>الممثل القانوني — نادي الجنسية الرياضي</strong>
+            <span class="yr">٢٠٢٣ · Al-Jinsiya Sports Club</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Services</span>
+      <h2>الخدمات القانونية</h2>
+      <div class="divider">⚖</div>
+      <p class="sub">باقة متكاملة من الخدمات القانونية المصممة لتلبية احتياجات الأفراد والشركات.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc reveal"><div class="svc-icon">⚖</div><h3>دعاوى الأحوال الشخصية</h3><p>قضايا الزواج والطلاق والحضانة والنفقة والميراث أمام المحاكم المختصة.</p></div>
+      <div class="svc reveal"><div class="svc-icon">🛡</div><h3>الدعاوى الجزائية</h3><p>الترافع والدفاع في جرائم الجنح والجنايات على مختلف أنواعها أمام المحاكم الجزائية.</p></div>
+      <div class="svc reveal"><div class="svc-icon">📜</div><h3>الدعاوى المدنية</h3><p>خبرة مميزة في الدعاوى المدنية أمام محاكم البداءة، شاملةً النزاعات والتعويضات.</p></div>
+      <div class="svc reveal"><div class="svc-icon">👷</div><h3>دعاوى العمال</h3><p>خبرة مميزة في تمثيل العمال وأصحاب العمل أمام محاكم العمل العراقية.</p></div>
+      <div class="svc reveal"><div class="svc-icon">🏢</div><h3>تسجيل الشركات</h3><p>تأسيس وتسجيل الشركات بأنواعها، وإدارة ضريبة الشركات وفق القانون العراقي.</p></div>
+      <div class="svc reveal"><div class="svc-icon">🔒</div><h3>الضمان الاجتماعي</h3><p>متابعة ملفات الضمان الاجتماعي وتسوية النزاعات مع الجهات المختصة.</p></div>
+      <div class="svc reveal"><div class="svc-icon">™</div><h3>العلامات التجارية</h3><p>تسجيل العلامات التجارية وحجز الأسماء التجارية وحماية الملكية الفكرية.</p></div>
+      <div class="svc reveal"><div class="svc-icon">📝</div><h3>تنظيم العقود</h3><p>إعداد ومراجعة وصياغة العقود التجارية والمدنية بدقة قانونية عالية.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Contact</span>
+      <h2>تواصل معنا</h2>
+      <div class="divider">⚖</div>
+      <p class="sub">للاستفسار أو حجز موعد استشارة، يسعدنا تواصلكم عبر القنوات أدناه.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="info-list reveal">
+        <div class="info-item"><div class="ic">📞</div><div><strong>الهاتف</strong><span><a href="tel:+9647702740819" style="color:var(--green-deep);font-weight:600;font-size:1.05rem">+964 770 274 0819</a></span></div></div>
+        <div class="info-item"><div class="ic" style="background:#25D366">💬</div><div><strong>واتساب</strong><span><a href="https://wa.me/9647702740819" target="_blank" rel="noopener" style="color:var(--green-deep);font-weight:600">تواصل عبر واتساب</a></span></div></div>
+        <div class="info-item"><div class="ic">✉</div><div><strong>البريد الإلكتروني</strong><span><a href="mailto:Hassan_mz5@yahoo.com">Hassan_mz5@yahoo.com</a></span></div></div>
+        <div class="info-item"><div class="ic">📍</div><div><strong>العنوان</strong><span>بغداد - الكرادة داخل - بناية الياسمين - مقابل حلويات الزيتون</span></div></div>
+        <div class="info-item"><div class="ic">🗺</div><div><strong>الموقع على الخريطة</strong><span><a href="https://maps.google.com/?q=33.309814,44.424343" target="_blank" rel="noopener">عرض على خرائط Google</a></span></div></div>
+      </div>
+      <div class="map-wrap reveal">
+        <iframe loading="lazy" src="https://www.google.com/maps?q=33.309814,44.424343&hl=ar&z=16&output=embed" title="موقع المكتب"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="brand-name" style="font-size:1.1rem">المحامي الحسن النوري</div>
+    <p>© <span id="yr"></span> شركة أيسن للمحاماة والاستشارات القانونية. جميع الحقوق محفوظة.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
+  const io = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
