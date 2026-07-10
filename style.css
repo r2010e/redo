@@ -1,0 +1,568 @@
+/* ============================================================
+   ISIN Law Firms — style.css
+   Token system per spec §3/§4. No substitutions.
+   ============================================================ */
+
+:root {
+  --brown:  #5E4A2B;  /* primary text, headings */
+  --olive:  #78725B;  /* secondary text, 18px+ only */
+  --sand:   #D8BA8C;  /* surface + text-on-green ONLY */
+  --green:  #173D1C;  /* accent, dark sections, links */
+  --white:  #F6F6F6;  /* pure white surfaces, cards */
+  --page:   #F3F0EB;  /* white mixed 10% toward sand */
+  --panel:  #EFE9DF;  /* white mixed 22% toward sand */
+  --rule:   #DDD7CE;  /* hairline grid lines */
+
+  --font-ar: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --font-en: 'IBM Plex Sans', system-ui, sans-serif;
+
+  --pad-page: clamp(20px, 5vw, 72px);
+  --maxw: 1440px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--font-ar);
+  background: var(--page);
+  color: var(--brown);
+  font-size: 18px;
+  line-height: 1.9;
+  overflow-x: hidden;
+}
+
+/* Latin runs use the Latin superfamily member */
+[lang="en"] { font-family: var(--font-en); }
+
+a { color: inherit; text-decoration: none; }
+
+/* Focus ring — 2px green, 2px offset, everywhere interactive */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+/* ---------- Utility labels ---------- */
+.util-en,
+.brand-en,
+.scroll-cue,
+.hero-subject-en,
+.area-en,
+.hero-nav a {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-family: var(--font-en);
+}
+/* Arabic utility labels: 13px, weight 500, NO tracking (never letter-space Arabic) */
+.hero-nav a,
+.brand-ar,
+.hero-subject-ar {
+  font-family: var(--font-ar);
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ============================================================
+   7.1 HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  padding: clamp(18px, 3vw, 34px) var(--pad-page) clamp(28px, 5vh, 60px);
+  max-width: var(--maxw);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto 1fr auto;
+  gap: 0;
+}
+
+/* --- grid hairlines --- */
+.grid-rules { position: absolute; inset: 0; pointer-events: none; }
+.grid-rules .vrule,
+.grid-rules .hrule { position: absolute; background: var(--rule); }
+.grid-rules .vrule { inline-size: 1px; inset-block: 0; transform-origin: top; }
+.grid-rules .hrule { block-size: 1px; inset-inline: 0; transform-origin: right; }
+.vrule-1 { inset-inline-start: 33.333%; }
+.vrule-2 { inset-inline-start: 66.666%; }
+.hrule-1 { inset-block-start: 30%; }
+.hrule-2 { inset-block-start: 66%; }
+
+/* --- top bar --- */
+.hero-top {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  position: relative;
+  z-index: 2;
+}
+.brand-lockup { display: inline-flex; flex-direction: column; line-height: 1.15; }
+.brand-ar { color: var(--brown); }
+.brand-en { color: var(--olive); margin-block-start: 2px; }
+
+.hero-nav { display: flex; gap: clamp(14px, 3vw, 40px); flex-wrap: wrap; }
+.hero-nav a { color: var(--brown); transition: opacity .2s; }
+.hero-nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+.scroll-cue { color: var(--olive); align-self: flex-start; }
+
+/* --- upper-right sub-label (RTL: column 1 = rightmost) --- */
+.hero-subject {
+  grid-column: 1 / 2;
+  grid-row: 2;
+  align-self: start;
+  padding-block-start: clamp(20px, 6vh, 64px);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  z-index: 2;
+}
+.hero-subject-ar { color: var(--brown); font-size: clamp(15px, 2vw, 20px); font-weight: 500; }
+.hero-subject-en { color: var(--olive); }
+
+/* --- the arch --- */
+.arch-hero {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  align-self: center;
+  justify-self: center;
+  inline-size: clamp(180px, 22vw, 280px);
+  aspect-ratio: 280 / 400;
+  position: relative;
+  z-index: 1;
+  will-change: transform;
+}
+.arch-svg { inline-size: 100%; block-size: 100%; display: block; }
+.arch-video {
+  inline-size: 280px; block-size: 400px;
+  object-fit: cover;
+  filter: url(#duotone-hero);
+}
+.arch-outline { stroke: var(--rule); stroke-width: 1; }
+
+/* --- display line --- */
+.hero-display {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  justify-self: start;   /* RTL: start = right edge */
+  text-align: start;
+  position: relative;
+  z-index: 2;
+}
+.display-word {
+  font-family: var(--font-ar);
+  font-size: clamp(72px, 14vw, 180px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+  color: var(--brown);
+}
+.display-inner { display: inline-block; }
+.firm-full {
+  color: var(--olive);
+  font-size: 18px;
+  font-weight: 400;
+  max-inline-size: 30ch;
+  margin-block-start: clamp(8px, 1.4vh, 16px);
+}
+
+/* --- lower-left EN paragraph (RTL: column 3 = leftmost) --- */
+.hero-lede {
+  grid-column: 3 / 4;
+  grid-row: 3;
+  align-self: end;
+  max-inline-size: 34ch;
+  font-family: var(--font-en);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--brown);
+  position: relative;
+  z-index: 2;
+}
+.hero-lede .accent { color: var(--green); }
+
+/* ============================================================
+   Section shell
+   ============================================================ */
+.section-inner {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding: clamp(64px, 12vh, 140px) var(--pad-page);
+}
+.section-heading {
+  font-family: var(--font-ar);
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--brown);
+}
+
+/* ---------------- 7.2 About ---------------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 96px);
+  align-items: start;
+}
+/* natural DOM order: head first = right column in RTL, body = left */
+.about-body { display: flex; flex-direction: column; gap: 1.4em; }
+.about-body p { color: var(--brown); font-size: 18px; line-height: 1.9; max-inline-size: 46ch; }
+
+/* ---------------- 7.3 Director ---------------- */
+.director { background: var(--panel); }
+.director-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(32px, 6vw, 88px);
+  align-items: start;
+}
+.director-name {
+  font-family: var(--font-ar);
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--brown);
+}
+.director-role { color: var(--olive); font-size: 18px; margin-block-start: 8px; }
+
+.cred-block { margin-block-start: clamp(28px, 4vh, 48px); }
+.cred-title {
+  font-family: var(--font-ar);
+  font-size: 13px; font-weight: 500;
+  color: var(--olive);
+  margin-block-end: 14px;
+}
+.cred-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.cred-list li {
+  font-size: 18px; color: var(--brown);
+  padding-inline-start: 18px;
+  position: relative;
+}
+.cred-list li::before {
+  content: ""; position: absolute; inset-inline-start: 0; inset-block-start: 0.85em;
+  inline-size: 6px; block-size: 6px; background: var(--olive);
+}
+
+/* timeline — rule on the RIGHT edge (RTL = inline-start) */
+.timeline {
+  list-style: none;
+  position: relative;
+  padding-inline-start: clamp(18px, 3vw, 32px);
+  margin-inline-start: 2px;
+}
+.timeline::before {
+  content: ""; position: absolute;
+  inset-inline-start: 0; inset-block: 4px;
+  inline-size: 0.5px; background: var(--rule);
+}
+.timeline-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 7ch 1fr;
+  gap: 14px;
+  align-items: baseline;
+  padding-block: 10px;
+}
+.timeline-item::before {
+  content: ""; position: absolute;
+  inset-inline-start: calc(clamp(18px, 3vw, 32px) * -1 - 3px);
+  inset-block-start: 1.15em;
+  inline-size: 6px; block-size: 6px; border-radius: 50%;
+  background: var(--brown);
+}
+.timeline-date {
+  color: var(--brown); font-weight: 500; font-size: 16px;
+  text-align: start; font-variant-numeric: normal;
+}
+.timeline-role { color: var(--olive); font-size: 18px; line-height: 1.5; }
+.timeline-item--undated .timeline-date { color: var(--olive); }
+
+/* portrait — rectangular, no radius, no arch */
+.director-portrait { align-self: start; }
+.director-portrait img {
+  inline-size: 100%; block-size: auto;
+  display: block;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 20%;
+  filter: grayscale(0.15) contrast(1.02);
+}
+
+/* ---------------- 7.4 Practice areas ---------------- */
+.areas-head { margin-block-end: clamp(32px, 6vh, 64px); }
+.areas-sub { color: var(--olive); font-size: 18px; margin-block-start: 10px; }
+.areas-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-block-start: 0.5px solid var(--rule);
+  border-inline-start: 0.5px solid var(--rule);
+}
+.area-card {
+  background: var(--white);
+  border-inline-end: 0.5px solid var(--rule);
+  border-block-end: 0.5px solid var(--rule);
+  padding: clamp(24px, 2.4vw, 40px);
+  min-block-size: clamp(150px, 18vh, 210px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  transition: border-color .2s;
+}
+.area-card:hover { border-color: var(--olive); }
+.area-ar { font-size: clamp(17px, 1.5vw, 20px); font-weight: 500; color: var(--brown); line-height: 1.5; }
+.area-en { color: var(--olive); }
+
+/* ---------------- 7.5 Video field ---------------- */
+.videofield {
+  position: relative;
+  background: var(--green);
+  block-size: 100vh;
+  overflow: hidden;
+}
+.videofield-stage { position: absolute; inset: 0; }
+.videofield-video {
+  position: absolute; inset: 0;
+  inline-size: 100%; block-size: 100%;
+  object-fit: cover;
+  filter: url(#duotone-video);
+}
+.videofield-mask {
+  position: absolute; inset: 0;
+  inline-size: 100%; block-size: 100%;
+}
+.videofield-mask rect[fill] { fill: var(--green); }
+.videofield-line {
+  position: absolute;
+  inset-block-end: 12%;
+  inset-inline: 0;
+  text-align: center;                    /* direction-agnostic centering */
+  font-family: var(--font-ar);
+  font-size: clamp(28px, 5vw, 68px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--sand);                    /* sand on green — the one allowed place */
+  white-space: nowrap;
+  will-change: transform;
+}
+
+/* ---------------- 7.6 Contact ---------------- */
+.contact { background: var(--panel); }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 80px);
+  align-items: stretch;
+}
+.contact-list { margin-block-start: clamp(28px, 4vh, 44px); }
+.contact-row { display: grid; grid-template-columns: 12ch 1fr; gap: 16px; padding-block: 16px; border-block-end: 1px solid var(--rule); }
+.contact-row dt { color: var(--olive); font-size: 16px; }
+.contact-row dd { color: var(--brown); font-size: 18px; }
+.contact-row a { color: var(--brown); text-decoration: underline; text-underline-offset: 3px; }
+.contact-row a:hover { text-decoration-thickness: 2px; }
+
+.wa-button {
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-block-start: clamp(24px, 4vh, 40px);
+  padding: 16px 32px;
+  background: var(--brown);              /* green reserved for the 3 accents */
+  color: var(--page);
+  font-family: var(--font-ar);
+  font-size: 18px; font-weight: 500;
+  transition: background .2s;
+}
+.wa-button:hover { background: #4a3a22; }
+
+.contact-map {
+  display: flex; flex-direction: column; justify-content: center; gap: 12px;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  padding: clamp(28px, 5vw, 56px);
+  min-block-size: 260px;
+  transition: border-color .2s;
+}
+.contact-map:hover { border-color: var(--olive); }
+.map-label { color: var(--olive); font-size: 13px; font-weight: 500; }
+.map-address { color: var(--brown); font-size: 18px; }
+.map-cta { color: var(--brown); text-decoration: underline; text-underline-offset: 3px; font-size: 16px; margin-block-start: 4px; }
+.contact-map:hover .map-cta { text-decoration: underline; }
+
+/* ---------------- 7.7 Footer ---------------- */
+.site-footer {
+  background: var(--green);
+  color: var(--sand);
+  text-align: center;
+  padding: clamp(32px, 6vh, 56px) var(--pad-page);
+}
+.site-footer p { font-size: 15px; color: var(--sand); }
+
+/* ============================================================
+   Editorial additions: mastheads, hero marginalia, pull-quote
+   ============================================================ */
+
+/* Section masthead: index + eyebrow + arch tick on a hairline */
+.masthead {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-block-end: 14px;
+  margin-block-end: clamp(28px, 5vh, 56px);
+  border-block-end: 1px solid var(--rule);
+}
+.masthead-index {
+  font-family: var(--font-ar);
+  font-size: 14px; font-weight: 600;
+  color: var(--brown);
+  font-variant-numeric: tabular-nums;
+}
+.masthead-label {
+  font-family: var(--font-en);
+  font-size: 11px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--olive);
+}
+.masthead-tick {
+  margin-inline-start: auto;         /* pushes the arch to the far (left) end in RTL */
+  inline-size: 22px; block-size: 16px;
+  overflow: visible;
+}
+.masthead-tick path { stroke: var(--olive); stroke-width: 1; vector-effect: non-scaling-stroke; }
+
+/* Hero marginalia — real info populating the empty cells */
+.hero-geo {
+  grid-column: 3 / 4;                /* leftmost cell in RTL */
+  grid-row: 2;
+  align-self: end;
+  display: flex; flex-direction: column; gap: 3px;
+  position: relative; z-index: 2;
+  padding-block-end: clamp(12px, 4vh, 44px);
+}
+.hero-geo-city { font-family: var(--font-ar); font-size: 13px; font-weight: 500; color: var(--brown); }
+.hero-geo-coords { font-family: var(--font-en); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--olive); }
+
+.hero-vlabel {
+  position: absolute;
+  /* physical left/top: the element's own vertical writing-mode makes logical
+     insets resolve against its vertical axis, so we pin it physically here */
+  left: clamp(4px, 1.2vw, 16px);
+  top: 50%;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: var(--font-en);
+  font-size: 11px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.24em;
+  color: var(--olive);
+  z-index: 1; pointer-events: none;
+}
+
+/* Pull-quote — one large declarative line anchoring the About section */
+.pull-quote {
+  margin-block-start: clamp(48px, 8vh, 96px);
+  max-inline-size: 32ch;
+  font-family: var(--font-ar);
+  font-size: clamp(24px, 3.2vw, 40px);
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  color: var(--brown);
+  position: relative;
+  padding-inline-start: 22px;        /* room for the start-side (right) bar in RTL */
+}
+.pull-quote::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;             /* right edge in RTL */
+  inset-block: 8px;
+  inline-size: 2px;
+  background: var(--olive);
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 900px) {
+  .about-grid,
+  .director-grid,
+  .contact-grid { grid-template-columns: 1fr; }
+  .about-head { order: 1; }
+  .about-body { order: 2; }
+  .director-portrait { order: -1; max-inline-size: 340px; }
+  .areas-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  body { font-size: 17px; }
+
+  /* tighter vertical rhythm on phones */
+  .section-inner { padding-block: clamp(48px, 9vh, 72px); }
+
+  /* hero: a clean vertical stack instead of the 3-col grid */
+  .grid-rules { display: none; }          /* rules disappear on phones (spec §12) */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+    gap: 4px;
+    padding-block-start: 20px;
+  }
+  .hero-nav { display: none; }
+  .hero-subject { align-self: stretch; padding-block-start: 16px; }
+  .arch-hero {
+    align-self: center;
+    inline-size: clamp(150px, 46vw, 190px);
+    margin-block: 28px;
+  }
+  .hero-display { align-self: stretch; }
+  .hero-lede { position: static; max-inline-size: none; margin-block-start: 24px; }
+
+  /* make the big thing smaller: the display word no longer dominates */
+  .display-word { font-size: clamp(52px, 16vw, 82px); }
+  .firm-full { font-size: 16px; }
+
+  /* make the small things bigger: labels & subtitles get legible sizes */
+  .brand-en, .scroll-cue, .hero-subject-en, .area-en { font-size: 12px; letter-spacing: 0.1em; }
+  .brand-ar, .hero-subject-ar { font-size: 15px; }
+
+  /* headings sized for narrow screens */
+  .section-heading { font-size: clamp(28px, 8vw, 36px); }
+  .director-name { font-size: clamp(26px, 7.5vw, 34px); }
+  .areas-sub, .director-role { font-size: 16px; }
+
+  /* practice areas: one column, comfortable cards, larger subtitle */
+  .areas-grid { grid-template-columns: 1fr; }
+  .area-card { min-block-size: auto; padding: 22px; gap: 10px; }
+  .area-ar { font-size: 18px; }
+
+  /* contact: stacked rows + full-width tap target */
+  .contact-row { grid-template-columns: 1fr; gap: 4px; }
+  .contact-row dt { font-size: 13px; }
+  .wa-button { inline-size: 100%; }
+  .contact-map { min-block-size: 200px; }
+
+  /* editorial additions on phones */
+  .hero-vlabel { display: none; }                 /* vertical spine has no room */
+  .hero-geo { align-self: start; padding-block-end: 0; margin-block-start: 20px; }
+  .hero-geo-city, .brand-ar, .hero-subject-ar { font-size: 15px; }
+  .masthead { margin-block-end: 28px; }
+  .pull-quote { max-inline-size: none; margin-block-start: 40px; padding-inline-start: 16px; }
+}
+
+/* Reduced motion: nothing transforms; video still plays (handled in JS too) */
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+}
